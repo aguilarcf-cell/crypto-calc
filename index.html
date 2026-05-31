@@ -34,7 +34,7 @@
 
         .app-container {
             width: 100%;
-            max-width: 375px; /* Tamaño estándar de pantalla de iPhone */
+            max-width: 375px;
             background-color: var(--card-bg);
             padding: 25px;
             border-radius: 20px;
@@ -70,7 +70,7 @@
             color: #fff;
             font-size: 16px;
             box-sizing: border-box;
-            -webkit-appearance: none; /* Quita estilos nativos en iOS */
+            -webkit-appearance: none;
         }
 
         input:focus {
@@ -135,7 +135,6 @@
 
     <script>
         function calcular() {
-            // Obtener los valores de los inputs
             const E = parseFloat(document.getElementById('precioEntrada').value);
             const Q = parseFloat(document.getElementById('cantidadTokens').value);
             const A = parseFloat(document.getElementById('precioActual').value);
@@ -143,7 +142,6 @@
             const resultadoDiv = document.getElementById('resultado');
             const roiDiv = document.getElementById('roi');
 
-            // Validar que los campos tengan números válidos
             if (isNaN(E) || isNaN(Q) || isNaN(A) || E <= 0 || Q <= 0) {
                 resultadoDiv.innerText = "$0.00";
                 resultadoDiv.style.color = "var(--text-color)";
@@ -152,23 +150,21 @@
                 return;
             }
 
-            // Aplicar las fórmulas matemáticas
-            const utilidad Perdida = Q * (A - E);
+            // Aquí estaba el error (corregido a una sola palabra unida):
+            const utilidadPerdida = Q * (A - E);
             const roi = ((A - E) / E) * 100;
 
-            // Formatear los resultados a 2 decimales
             const formatoMoneda = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(utilidadPerdida);
             const formatoROI = roi.toFixed(2) + "%";
 
-            // Mostrar el resultado y cambiar el color según las ganancias o pérdidas
             if (utilidadPerdida >= 0) {
                 resultadoDiv.innerText = "+" + formatoMoneda;
-                resultadoDiv.style.color = "#34d399"; // Verde brillante
+                resultadoDiv.style.color = "#34d399"; 
                 roiDiv.innerText = "+" + formatoROI;
                 roiDiv.style.color = "#34d399";
             } else {
                 resultadoDiv.innerText = formatoMoneda;
-                resultadoDiv.style.color = "#f87171"; // Rojo brillante
+                resultadoDiv.style.color = "#f87171"; 
                 roiDiv.innerText = formatoROI;
                 roiDiv.style.color = "#f87171";
             }
